@@ -1,9 +1,14 @@
-/*
+const moment = require('moment-timezone');
 
-  whoa!    Hold your horses! This is badly formatted code.
+moment.tz.setDefault('America/New_York');
 
-*/
+let targetTimezone;
 
-const message = 'Hello World';
+if (process.argv.length !== 3) {
+  console.log('Usage: node <script-file> <timezone>');
+  process.exit(1);
+} else {
+  targetTimezone = process.argv[2];
+}
 
-console.log(message); // this should not show as an error
+console.log(`The time at the ${targetTimezone} timezone is ${moment().tz(targetTimezone).format()}`);
